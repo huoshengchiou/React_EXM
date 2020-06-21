@@ -1,9 +1,15 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+
+import Banner from "./Banner";
+import Rxjs_main from "./Rxjs_main";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <Rxjs_main />
+      {/* <Banner /> */}
+    </>
+  );
 }
 
 export default App;
