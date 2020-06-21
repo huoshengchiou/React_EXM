@@ -1,5 +1,18 @@
 import React from "react";
-import { Observable } from "rxjs";
+import {
+  Observable,
+  Subject,
+  asapScheduler,
+  pipe,
+  of,
+  from,
+  interval,
+  merge,
+  fromEvent,
+} from "rxjs";
+import { map, filter, scan } from "rxjs/operators";
+import { ajax } from "rxjs/ajax";
+
 export default function Rxjs_main() {
   const source$ = new Observable((sub) => {
     sub.next(() => {
@@ -41,5 +54,8 @@ export default function Rxjs_main() {
   //  got value 3
   // here
   //  just after subscribe
+
+  //simple next
+
   return <></>;
 }
