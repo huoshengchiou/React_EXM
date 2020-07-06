@@ -26,14 +26,35 @@ export function useInterval(callback, delay) {
 
 export const useTimerprovider = ({ FetchOn, setFetchOn, ShowSignal }) => {
   //count func
-  const [NewTime, setNewTime] = useState(0);
-  const [FetchBackState, setFetchBackState] = useState("");
-  const LastShow = useRef("");
+  // const [NewTime, setNewTime] = useState(0);
+  const [FchBkState, setFchBkState] = useState("");
+  const [FchBkDelay, setFchBkDelay] = useState(0)
+  // const LastShow = useRef("");
+
+
+  const prevStateref = useRef('')
+
 
   function fetch1() {
     // console.log("here");
-    setNewTime(3000);
-    setFetchBackState("new state");
+    const resource = [
+      { state: 'Join', Timelength: 2000 },
+      { state: 'ongoing', Timelength: 5000 },
+      { state: 'complete', Timelength: 10000 }
+    ]
+    const picknum = (Math.floor(Math.random() * 3))
+
+
+
+    setFchBkDelay(resource[picknum].Timelength)
+
+    setFchBkState(resource[picknum].state)
+
+    console.log("資料拿完");
+
+
+    // setNewTime(3000);
+    // setFetchBackState("new state");
     setFetchOn(false);
 
     //當fetch回來的結果為end game 停止迴圈
@@ -41,11 +62,11 @@ export const useTimerprovider = ({ FetchOn, setFetchOn, ShowSignal }) => {
 
   useEffect(() => {
     if (FetchOn) {
-      console.log("進來了");
+      console.log("拿資料");
       fetch1();
     }
     return;
   }, [FetchOn]);
 
-  return { NewTime, FetchBackState };
+  return { FchBkDelay, FchBkState };
 };

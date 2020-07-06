@@ -10,6 +10,7 @@ function App() {
       {/* <Rxjs_main /> */}
       {/* <Banner /> */}
       <Test_memo />
+      <Banner />
     </>
   );
 }
