@@ -4,6 +4,7 @@ import Banner from "./Banner";
 import Rxjs_main from "./Rxjs_main";
 import Test_memo from "./Test_memo";
 import Test_scroll from './Test_scroll'
+import Test_callback from './Test_callback'
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       {/* <Banner /> */}
       {/* <Test_memo /> */}
       {/* <Banner /> */}
-      <Test_scroll />
+      <Test_callback />
+      {/* <Test_scroll /> */}
     </>
   );
 }
