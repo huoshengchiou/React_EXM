@@ -1,0 +1,26 @@
+
+
+.allwrapper{
+    width: 80vw;
+    background-color: lightblue;
+    margin: 0 auto;
+    .carouselwindow{
+        width: 50%;
+        margin: 0 auto;
+        background: lightyellow;
+    }
+}
+.wrapper{
+    display: flex;
+    .divori{
+    width: 100px;
+    height: 100px;
+    background: limegreen;
+    margin: 0 5px 0;
+    
+    }
+    .div2{
+        transform: scale(2);
+        background: magenta;
+    }
+}
