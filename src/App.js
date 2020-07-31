@@ -7,6 +7,7 @@ import Test_scroll from './Test_scroll'
 import Test_callback from './Test_callback'
 import Test_customerhook from './Test_customerhook'
 import Test_carousel from './Test_carousel'
+import Test_Tab from './Test_Tab'
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
       {/* <Test_memo /> */}
       {/* <Banner /> */}
       {/* <Test_customerhook /> */}
-      <Test_carousel />
+      {/* <Test_carousel /> */}
       {/* <Test_callback /> */}
       {/* <Test_scroll /> */}
+      <Test_Tab />
     </>
   );
 }
