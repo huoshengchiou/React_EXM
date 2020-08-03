@@ -10,6 +10,7 @@ import Test_carousel from "./Test_carousel";
 import Test_Tab from "./Test_Tab";
 import TryUseState from "./hook_play/TryUseState";
 import TryUseReduce from "./hook_play/TryUseReduce";
+import DemoHook from "./DemoHook";
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
       {/* <TryUseState />
       <TryUseReduce /> */}
       <Test_Tab />
+      <DemoHook />
     </>
   );
 }
