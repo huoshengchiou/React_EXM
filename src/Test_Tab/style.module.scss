@@ -1,33 +1,62 @@
 .edgeWrapper {
   width: 100vw;
-  // height: 40px;
-  background: mediumpurple;
-  .listWrapper {
-    width: 100%;
-    list-style: none;
-    display: flex;
-    position: relative;
-    .listUnit {
-      // width: 20%;
-      height: 30px;
-      background: lightgray;
-      margin-left: 10px;
-      &::after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 5%;
-        background: red;
+  background: lightskyblue;
+  .listWrapper{
+      width: 100%;
+      background-color: #0B2744;
+      padding-bottom: 5px;
+      .textList{
+        padding: 0;
+        //   width: 80%;
+          list-style: none;
+          margin: 0;
+          display: flex;
+          .listUnit{
+              width: 10%;
+              height: 20px;
+              padding-left: 20px;
+              font-size: 18px;
+              font-weight: 700;
+              color: white;
+              font-style: italic;
+            //   background: cornflowerblue;
+              text-align: center;
+              cursor: pointer;
+              &.disabled{
+                cursor: default;
+                color:rgba(231,232,232, 0.7);
+              }
+          }
+         
       }
-    }
-    .moveBrick {
-      width: 10%;
-      height: 5px;
-      background: black;
-      transition: 0.3s;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
+      
   }
 }
+
+.BrickTrack{
+    width: 100%;
+    // height: 5px;
+    padding: 2px 0;
+    background: #0B2744;
+    position: relative;
+    margin-top: 5px;
+    padding-top: 1.5px;
+    .Line{
+        width: 100%;
+        height: 1.5px;
+        background: rgba(231,232,232, 0.7);
+    }
+    .moveBrick{
+        // width: 47px;
+        height: 5px;
+        background: white;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        // transition: .2s ease;
+    }
+    
+
+}
+
+    
