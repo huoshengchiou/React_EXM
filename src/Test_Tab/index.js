@@ -2,18 +2,18 @@ import React, { useState, useRef } from "react";
 import classes from "./style.module.scss";
 import { useEffect } from "react";
 // { TabList, pathDomain }
-const Test_Tab = () => {
-    const pathDomain = '3001'
+const Test_Tab = ({ Tablist, pathDomain = '3001' }) => {
+    //Tablist without disabled ok
     const testTablist = [
         {
             itemName: 'home',
             path: '/home',
-            disabled: false,
+            // disabled: false,
         },
         {
             itemName: 'my',
             path: '/my',
-            disabled: false,
+            // disabled: false,
         },
         {
             itemName: 'reference',
@@ -47,16 +47,13 @@ const Test_Tab = () => {
         setBrickWidth(UnitWidth.current)
     }
     useEffect(() => {
-
         initialSetting()
-        //TODO 當windows寬度改變
+        //reStart setting when window changes size 
         window.addEventListener('resize', () => { initialSetting() })
-        // 再次調整div寬度
         //remove event
         return () => {
             window.removeEventListener('resize')
         }
-
     }, [])
 
     const [BrickX, setBrickX] = useState(0)
