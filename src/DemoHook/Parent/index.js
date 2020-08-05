@@ -1,7 +1,13 @@
 import React from "react";
+import Child from './Child'
+import StateStore from './StateStore'
 
 function Parent() {
-  return <></>;
+  return (<>
+    <StateStore >
+      <Child />
+    </StateStore >
+  </>)
 }
 
 export default Parent;

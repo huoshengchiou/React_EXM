@@ -4,7 +4,8 @@ function DemoHook() {
   const [demoNum, setdemoNum] = useState(0);
   return (
     <>
-      <button onClick={() => {}}>switch</button>
+      <div>DemoHook</div>
+      <button onClick={() => { }}>switch</button>
     </>
   );
 }
