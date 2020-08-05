@@ -1,23 +1,17 @@
-import React, { useState, createContext, useEffect } from 'react'
+import React, { useState, createContext, useEffect } from "react";
 
+export const stateProvider = createContext();
 
-export const stateProvider = createContext()
+function StateStore(props) {
+  const accumulate = {};
 
-
-function StateStore() {
-
-
-
-
-    const accumulate = {}
-
-    return (
-        <>
-            <stateProvider.Provider value={accumulate}>
-                {props.children}
-            </stateProvider.Provider>
-        </>
-    )
+  return (
+    <>
+      <stateProvider.Provider value={accumulate}>
+        {props.children}
+      </stateProvider.Provider>
+    </>
+  );
 }
 
-export default StateStore
+export default StateStore;

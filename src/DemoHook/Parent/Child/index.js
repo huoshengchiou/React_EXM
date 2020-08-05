@@ -1,16 +1,10 @@
-import React from 'react'
+import React, { useContext } from "react";
 
-import { stateProvider } from '../StateStore'
-
+import { stateProvider } from "../StateStore";
 
 function Child() {
-
-    const { } = useContext(stateProvider)
-    return (
-        <>
-
-        </>
-    )
+  const {} = useContext(stateProvider);
+  return <></>;
 }
 
-export default Child
+export default Child;

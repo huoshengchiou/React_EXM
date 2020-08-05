@@ -1,13 +1,15 @@
-import React from "react";
-import Child from './Child'
-import StateStore from './StateStore'
+import React, { useState } from "react";
+import Child from "./Child";
+import StateStore from "./StateStore";
 
 function Parent() {
-  return (<>
-    <StateStore >
-      <Child />
-    </StateStore >
-  </>)
+  return (
+    <>
+      <StateStore>
+        <Child />
+      </StateStore>
+    </>
+  );
 }
 
 export default Parent;
