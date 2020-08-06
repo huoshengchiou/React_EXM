@@ -1,0 +1,51 @@
+*{
+  box-sizing: border-box;
+}
+
+.wrapper{
+  width: 100vw;
+  background: lightblue;
+  .window{
+    width: 60vw;
+    height: 20vh;
+    background: lightgreen;
+    margin: 0 auto;
+    position: relative;
+
+  }
+}
+
+.infoWrapper{
+  width: 80vw;
+  height: 100%;
+  background: lightpink;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  // overflow: auto;
+  .leftWindow{
+    width: 30%;
+    height: 100%;
+    overflow-y: scroll;
+    .leftSide{
+    width: 100%;
+    height: 150%;
+    border: lightslategray 1px solid;
+       
+    }
+  }
+  .rightWindow{
+    width: 60%;
+    height: 100%;
+    background: lightblue;
+    overflow: scroll;
+   .rightSide{
+    width: 150%;
+    height: 150%;
+    border: black 1px solid;
+    }
+  }
+}
+
+    

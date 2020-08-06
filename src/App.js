@@ -11,6 +11,7 @@ import Test_Tab from "./Test_Tab";
 import TryUseState from "./hook_play/TryUseState";
 import TryUseReduce from "./hook_play/TryUseReduce";
 import DemoHook from "./DemoHook";
+import Test_listarr from './Test_listarr'
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
       {/* <Test_scroll /> */}
       {/* <TryUseState />
       <TryUseReduce /> */}
+      <Test_listarr />
       {/* <Test_Tab /> */}
       <DemoHook />
     </>
