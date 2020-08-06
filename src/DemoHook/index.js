@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Counter from "./Counter";
 import Parent from "./Parent";
+import CallBack from "./CallBack";
 
 function DemoHook() {
   const display = () => {
-    console.log('display')
-    return 'hello'
-  }
+    console.log("display");
+    return "hello";
+  };
   const [demoNum, setdemoNum] = useState(0);
-  const [text, setText] = useState(() => display())
+  const [text, setText] = useState(() => display());
   return (
     <>
       <h3>DemoHook</h3>
@@ -18,6 +19,8 @@ function DemoHook() {
       <Counter />
       <hr />
       <Parent />
+      <hr />
+      <CallBack />
     </>
   );
 }

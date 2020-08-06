@@ -6,14 +6,14 @@ function Counter() {
     return 0;
   };
   const Render = useRef(0);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(() => 0);
   Render.current += 1;
 
   const addcount = () => {
     console.log("addcount run");
 
-    setCount(count + 1);
-    // setCount((prestate) => prestate + 1);
+    // setCount(count + 1);
+    setCount((prestate) => prestate + 1);
     // setCount((prestate) => prestate + 1);
   };
 
@@ -21,7 +21,7 @@ function Counter() {
     setCount(fetchfunc());
   }, []);
 
-  const [arr, setArr] = useState([{ id: 1 }, { id: 2 }]);
+  // const [arr, setArr] = useState([{ id: 1 }, { id: 2 }]);
 
   return (
     <>
@@ -32,7 +32,7 @@ function Counter() {
       <button onClick={() => addcount()}>+</button>
       <h3>Display</h3>
       <Display count={count} />
-      <button
+      {/* <button
         onClick={() =>
           setArr((preState) => [
             ...preState,
@@ -45,7 +45,7 @@ function Counter() {
 
       {arr.map((val) => {
         return <Display id={val.id} />;
-      })}
+      })} */}
     </>
   );
 }
