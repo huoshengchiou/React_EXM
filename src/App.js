@@ -13,7 +13,17 @@ import TryUseReduce from "./hook_play/TryUseReduce";
 import DemoHook from "./DemoHook";
 import Test_listarr from './Test_listarr'
 import TestReturn from './TestReturn'
+import HOC from './TestHOC'
+import Component1 from './TestHOC/Component1'
+import Component2 from './TestHOC/Component2'
+import HOCC from './HOCC'
+
+
 function App() {
+  //inject new props
+  const EnhanceComponent = HOC(Component1, Component2)
+
+
   return (
     <>
       {/* <Rxjs_main /> */}
@@ -30,6 +40,9 @@ function App() {
       {/* <Test_listarr /> */}
       {/* <Test_Tab /> */}
       <DemoHook />
+      <hr />
+      <EnhanceComponent />
+      <HOCC />
     </>
   );
 }
