@@ -11,18 +11,17 @@ import Test_Tab from "./Test_Tab";
 import TryUseState from "./hook_play/TryUseState";
 import TryUseReduce from "./hook_play/TryUseReduce";
 import DemoHook from "./DemoHook";
-import Test_listarr from './Test_listarr'
-import TestReturn from './TestReturn'
-import HOC from './TestHOC'
-import Component1 from './TestHOC/Component1'
-import Component2 from './TestHOC/Component2'
-import HOCC from './HOCC'
-
+import Test_listarr from "./Test_listarr";
+import TestReturn from "./TestReturn";
+import HOC from "./TestHOC";
+import Component1 from "./TestHOC/Component1";
+import Component2 from "./TestHOC/Component2";
+import HOCC from "./HOCC";
+import TryUseReduce2 from "./hook_play/TryUseReduce2";
 
 function App() {
   //inject new props
-  const EnhanceComponent = HOC(Component1, Component2)
-
+  const EnhanceComponent = HOC(Component1, Component2);
 
   return (
     <>
@@ -41,8 +40,10 @@ function App() {
       {/* <Test_Tab /> */}
       <DemoHook />
       <hr />
-      <EnhanceComponent />
-      <HOCC />
+      {/* <EnhanceComponent /> */}
+      {/* <HOCC /> */}
+      {/* <TryUseReduce /> */}
+      {/* <TryUseReduce2 /> */}
     </>
   );
 }

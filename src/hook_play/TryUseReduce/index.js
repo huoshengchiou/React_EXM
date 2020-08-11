@@ -1,33 +1,44 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState, useRef } from "react";
 
-const ACTION = {
-  ADD_TODO: "add-todo",
+const ACTIONS = {
+  INCREASE: "INCREASE",
+  DECREASE: "DECREASE",
 };
-const reducer = (todos, action) => {
+
+// return new updated state
+function reducer(state, action) {
   switch (action.type) {
-    case ACTION.ADD_TODO:
-      return [...todos, newTodo(todos)];
+    case ACTIONS.INCREASE:
+      return { count: state.count + 1 };
+    case ACTIONS.DECREASE:
+      return { count: state.count - 1 };
+    default:
+      return state;
   }
-};
-
-const newTodo = (name) => {
-  return { id: Date.now(), name, complete: false };
-};
+}
 
 function TryUseReduce() {
-  const [todo, dispatch] = useReducer(reducer, []);
-  const [rendername, setRendername] = useState("");
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch({ type: ACTION.ADD_TODO, payload: { name: e.target.name } });
-    setRendername("");
-  }
+  const renderTimes = useRef(0);
+  //function|initial  dispatch call for update
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+  // const [count, setCount] = useState(() => 0);
+
+  const increase = () => {
+    dispatch({ type: ACTIONS.INCREASE });
+    // setCount((preCount) => preCount + 1);
+  };
+  const decrease = () => {
+    dispatch({ type: ACTIONS.DECREASE });
+  };
+  renderTimes.current += 1;
   return (
     <>
-      <div>Use reduce</div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={""} id="" onChange={(e) => console.log(e)} />
-      </form>
+      <h2>try reducer</h2>
+      <h4>{`render ${renderTimes.current} Times`}</h4>
+      <h4>{`count: ${state.count}`}</h4>
+      <button onClick={increase}>+</button>
+      <button onClick={decrease}>-</button>
     </>
   );
 }
