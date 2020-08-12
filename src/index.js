@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+// https://medium.com/@andreasheissenberger/react-components-render-twice-any-way-to-fix-this-91cf23961625
 ReactDOM.render(
   <React.StrictMode>
     <App />
