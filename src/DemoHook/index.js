@@ -4,12 +4,15 @@ import Parent from "./Parent";
 import CallBack from "./CallBack";
 
 function DemoHook() {
-  const display = () => {
-    console.log("display");
-    return "hello";
+  console.log("DemoHook run");
+  const initialSetting = () => {
+    console.log("initialSetting");
+    const obj = { initialVal: "hello" };
+    return obj.initialVal;
   };
+
   const [demoNum, setdemoNum] = useState(0);
-  const [text, setText] = useState(() => display());
+  const [text, setText] = useState(() => initialSetting());
   const [disapper, setDisapper] = useState(false);
 
   useEffect(() => {
@@ -17,12 +20,15 @@ function DemoHook() {
       alert("byebye");
     };
   }, []);
-
+  const handleChangeText = () => {
+    setText("change");
+  };
   return (
     <>
       <h3>DemoHook</h3>
       <div>{text}</div>
-      <button onClick={() => setdemoNum(2)}>click</button>
+      <button onClick={handleChangeText}>change text</button>
+      {/* <button onClick={() => setdemoNum(2)}>click</button>
       <button
         onClick={() => {
           setDisapper(!disapper);
@@ -35,7 +41,7 @@ function DemoHook() {
       <hr />
       <Parent />
       <hr />
-      <CallBack />
+      <CallBack /> */}
     </>
   );
 }
