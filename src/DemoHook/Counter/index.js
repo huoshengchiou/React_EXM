@@ -1,74 +1,56 @@
 import React, { useEffect, useRef, useState } from "react";
-import Display from "../Display";
+import DisplayCount from "./DisplayCount";
 function Counter() {
+  console.log("Counter render");
+
+  //record render
+  const Render = useRef(0);
+
+  // -----------inital set func------
   const fetchfunc = () => {
-    console.log("run");
+    console.log("fetchfunc run");
     return 0;
   };
-  const Render = useRef(0);
-  const [count, setCount] = useState(() => 0);
-  const [renderTest, setRenderTest] = useState(() => {
-    return { id: 0 };
-  });
+  const [count, setCount] = useState(0);
+
   Render.current += 1;
 
   const addcount = () => {
     console.log("addcount run");
 
     // setCount(count + 1);
+
+
     setCount((prestate) => prestate + 1);
     // setCount((prestate) => prestate + 1);
   };
 
   useEffect(() => {
-    setCount(fetchfunc());
+    // setCount(fetchfunc());
 
     return () => {
-      alert("byebye");
+      alert("byebye Counter");
     };
   }, []);
 
-  // const [arr, setArr] = useState([{ id: 1 }, { id: 2 }]);
 
   return (
     <>
-      <h3>Count</h3>
-      <div>{`render_${Render.current}_times`}</div>
-      <pre></pre>
-      <div>{count}</div>
+      <h3>Count {`render_${Render.current}_times`}</h3>
       <button onClick={() => addcount()}>+</button>
-      <h3>Display</h3>
-      <Display count={count} />
-      <button
-        onClick={() =>
-          setRenderTest((pre) => {
-            return { ...pre, id: 0 };
-          })
-        }
-      >
-        setRenderTest
-      </button>
       <button
         onClick={() => {
           setCount(0);
         }}
       >
-        set
-      </button>
-      {/* <button
-        onClick={() =>
-          setArr((preState) => [
-            ...preState,
-            preState.map((val) => (val.id === 1 ? (val.id = 3) : val)),
-          ])
-        }
-      >
-        +
+        reset
       </button>
 
-      {arr.map((val) => {
-        return <Display id={val.id} />;
-      })} */}
+      {/* ----------------------------------------- */}
+      <h3>Display</h3>
+      <DisplayCount count={count} />
+
+
     </>
   );
 }

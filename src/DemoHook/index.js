@@ -2,33 +2,38 @@ import React, { useState, useEffect } from "react";
 import Counter from "./Counter";
 import Parent from "./Parent";
 import CallBack from "./CallBack";
+import HOCguest from './HOCguest'
+import { myHOC } from './hoc'
 
 function DemoHook() {
-  console.log("DemoHook run");
+  console.log("DemoHook render");
   const initialSetting = () => {
-    console.log("initialSetting");
-    const obj = { initialVal: "hello" };
+    console.log("initialSetting func run");
+    const obj = { initialVal: "initial value" };
     return obj.initialVal;
   };
-
-  const [demoNum, setdemoNum] = useState(0);
-  const [text, setText] = useState(() => initialSetting());
-  const [disapper, setDisapper] = useState(false);
+  const [text, setText] = useState(initialSetting());
 
   useEffect(() => {
+    // setText()
     return () => {
       alert("byebye");
     };
   }, []);
   const handleChangeText = () => {
-    setText("change");
+    setText("change value");
   };
+  // ----------------------------------
+  const [disapper, setDisapper] = useState(false);
+  // ----------------------------------
+
+  const EnhanceGuest = myHOC(HOCguest)
+
   return (
     <>
       <h3>DemoHook</h3>
       <div>{text}</div>
       <button onClick={handleChangeText}>change text</button>
-      {/* <button onClick={() => setdemoNum(2)}>click</button>
       <button
         onClick={() => {
           setDisapper(!disapper);
@@ -39,9 +44,12 @@ function DemoHook() {
       <hr />
       {!disapper && <Counter />}
       <hr />
-      <Parent />
+      {/* <Parent /> */}
       <hr />
-      <CallBack /> */}
+      {/* <CallBack /> */}
+      <hr />
+      {/* <HOCguest /> */}
+      {/* <EnhanceGuest /> */}
     </>
   );
 }
