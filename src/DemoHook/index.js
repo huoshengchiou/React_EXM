@@ -4,6 +4,8 @@ import Parent from "./Parent";
 import CallBack from "./CallBack";
 import HOCguest from './HOCguest'
 import { myHOC } from './hoc'
+import Child2 from './Parent/Child2'
+import ClassText from './Parent/ClassText'
 
 function DemoHook() {
   console.log("DemoHook render");
@@ -31,9 +33,13 @@ function DemoHook() {
 
   return (
     <>
+
       <h3>DemoHook</h3>
-      <div>{text}</div>
-      <button onClick={handleChangeText}>change text</button>
+      <Child2 />
+      <hr />
+      <ClassText />
+      {/* <div>{text}</div> */}
+      {/* <button onClick={handleChangeText}>change text</button> */}
       <button
         onClick={() => {
           setDisapper(!disapper);

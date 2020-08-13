@@ -3,7 +3,11 @@ import React, { useState, createContext, useEffect } from "react";
 export const stateProvider = createContext();
 
 function StateStore(props) {
-  const accumulate = {};
+
+
+
+  const accumulate = {
+  };
 
   return (
     <>
