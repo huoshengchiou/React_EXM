@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Banner from "./Banner";
 import Rxjs_main from "./Rxjs_main";
@@ -18,10 +18,36 @@ import Component1 from "./TestHOC/Component1";
 import Component2 from "./TestHOC/Component2";
 import HOCC from "./HOCC";
 import TryUseReduce2 from "./hook_play/TryUseReduce2";
+import TabLv1_v2 from "../src/TabLv1_v2";
 
 function App() {
   //inject new props
   const EnhanceComponent = HOC(Component1, Component2);
+
+  const list = [
+    {
+      TabName: "StateTab1",
+      // disabled: `(default)false or true`,
+      customKey: "num1",
+      otherFunc: true,
+    },
+    {
+      TabName: "StateTab2",
+      // disabled: `(default)false or true`,
+      customKey: "num2",
+    },
+    {
+      TabName: "StateTab3",
+      // disabled: `(default)false or true`,
+      customKey: "num3",
+    },
+  ];
+
+  const [current, setCurrent] = useState("num1");
+
+  const myFunc = () => {
+    console.log("invoke my Func");
+  };
 
   return (
     <>
@@ -38,9 +64,19 @@ function App() {
       {/* <TestReturn /> */}
       {/* <Test_listarr /> */}
       {/* <Test_Tab /> */}
-      <hr />
+      {/* <hr />
       <DemoHook />
-      <hr />
+      <hr /> */}
+      <div style={{ background: "black" }}>
+        <TabLv1_v2
+          Tablist={list}
+          customKey="customKey"
+          customInitialVal="num1"
+          onClick={setCurrent}
+          flagKey="otherFunc"
+          flagFunc={myFunc}
+        />
+      </div>
       {/* <EnhanceComponent /> */}
       {/* <HOCC /> */}
       {/* <TryUseReduce /> */}
