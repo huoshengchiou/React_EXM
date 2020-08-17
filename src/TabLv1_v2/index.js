@@ -201,7 +201,7 @@ const TabLv1_v2 = ({
                       event: e,
                       path: val.path,
                       idx,
-                      customKey: val[customKey],
+                      customVal: val[customKey],
                       customFlagVal: val[flagKey],
                     })
                   }
