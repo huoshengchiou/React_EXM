@@ -1,0 +1,65 @@
+
+.edgeWrapper {
+  width: 100%;
+  // background: lightskyblue;
+  .listWrapper{
+      width: 100%;
+      // background-color: rgba(0, 0, 0, 0.3);
+      padding-top:35px;
+      padding-bottom: 35px;
+      .textList{
+        padding: 0;
+        //   width: 80%;
+          list-style: none;
+          margin: 0;
+          display: flex;
+          .listUnit{
+              width: 10%;
+              height: 20px;
+              margin-left: 20px;
+              // padding-left: 20px;
+              font-size: 18px;
+              font-weight: 700;
+              color: white;
+              font-style: italic;
+            //   background: cornflowerblue;
+              text-align: center;
+              cursor: pointer;
+              &.disabled{
+                cursor: default;
+                color:rgba(231,232,232, 0.7);
+              }
+          }
+         
+      }
+      
+  }
+}
+
+.BrickTrack{
+    width: 100%;
+    // height: 5px;
+    padding: 2px 0;
+    // background: #0B2744;
+    position: relative;
+    margin-top: 5px;
+    padding-top: 1.5px;
+    .Line{
+        width: 100%;
+        height: 1.5px;
+        background: rgba(231,232,232, 0.7);
+    }
+    .moveBrick{
+        // width: 47px;
+        height: 5px;
+        background: white;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        // transition: .2s ease;
+    }
+    
+
+}
+
+    
