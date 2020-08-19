@@ -14,6 +14,7 @@ const TabLv1_v2 = ({
   customInitialVal = "",
   flagKey = "",
   flagFunc = false,
+  defaultIdx = 0,
 }) => {
   //TODO由自定義key建立default selection
   // const customKey = 'key'
@@ -57,6 +58,7 @@ const TabLv1_v2 = ({
   const runOnce = useRef(false);
   //currentSelect Item Idx and path
   const currentSelectIdx = useRef(null);
+  const preSelectIdx = useRef(null)
   const currentPath = useRef(null);
   const currentVal = useRef(null);
 
@@ -85,26 +87,7 @@ const TabLv1_v2 = ({
         .getPropertyValue("margin-left")
         .split("p")[0] * 1;
     //------------^-Distance setting----^------
-    if (onClick) {
-      currentVal.current = customInitialVal;
-      Tablist.forEach((val, idx) => {
-        val[customKey] === customInitialVal && (currentSelectIdx.current = idx);
-      });
-    } else {
-      //由path設定defualt選項
-      Tablist.forEach((val, idx) => {
-        val.path === document.URL.split(pathDomain)[1] &&
-          (currentSelectIdx.current = idx);
-      });
-      if (fakeURL)
-        Tablist.forEach((val, idx) => {
-          val.path === fakeURL.split(pathDomain)[1] &&
-            (currentSelectIdx.current = idx);
-        });
-      currentPath.current = fakeURL
-        ? fakeURL.split(pathDomain)[1]
-        : document.URL.split(pathDomain)[1];
-    }
+
     //建立moveBrick寬度
     setBrickWidth(UnitWidth.current);
   };
@@ -128,55 +111,76 @@ const TabLv1_v2 = ({
   const [BrickX, setBrickX] = useState(0);
   const handleTabClick = ({
     idx = 0,
-    path = null,
-    customVal,
-    customFlagVal = false,
+    feedBack = {},
     event,
   }) => {
-    if (!ListUnit.current || currentSelectIdx.current === `${idx}`) return;
-    console.log("idx", idx);
+    if (!ListUnit.current) return;
+    console.log('校正')
     //record Obj
-    currentEventObj.current = { idx, path, customVal, customFlagVal, event };
     currentSelectIdx.current = `${idx}`;
-    currentPath.current = path;
-    if (onClick) currentVal.current = customVal;
-    switchFlag.current = customFlagVal;
-    runOnce.current = true;
+    currentEventObj.current = { ...feedBack, idx, event };
+    // currentPath.current = feedBack.path;
+    // if (onClick) currentVal.current = customVal;
+    switchFlag.current = feedBack[flagKey] || false;
     // rugular count
     let moveDis = idx * (SingleMarginWidth.current + UnitWidth.current);
     // let moveDis = (idx + 1) * SingleMarginWidth.current + idx * UnitWidth.current
     setBrickX(moveDis);
   };
 
-  //once BrickWidth decided //setting Brick X
+  //Decide Brick X position
   useEffect(() => {
-    if (BrickWidth === null) return;
-    //no match path set default 0
-    // TODO 一開始不給啟動路徑
+    if (!ListUnit.current || BrickWidth === null) return;
+    console.log('發動')
+    //find initial idx
+    // if (onClick) {
+    //   currentVal.current = customInitialVal;
+    //   Tablist.forEach((val, idx) => {
+    //     val[customKey] === customInitialVal && (currentSelectIdx.current = idx);
+    //   });
+    // } else {
+    //   //由path設定defualt選項
+    //   Tablist.forEach((val, idx) => {
+    //     val.path === document.URL.split(pathDomain)[1] &&
+    //       (currentSelectIdx.current = idx);
+    //   });
+    //   if (fakeURL)
+    //     Tablist.forEach((val, idx) => {
+    //       val.path === fakeURL.split(pathDomain)[1] &&
+    //         (currentSelectIdx.current = idx);
+    //     });
+    //   currentPath.current = fakeURL
+    //     ? fakeURL.split(pathDomain)[1]
+    //     : document.URL.split(pathDomain)[1];
+    // }
     handleTabClick({
-      idx: currentSelectIdx.current || "0",
-      customVal: customInitialVal,
+      idx: defaultIdx,
     });
   }, [BrickWidth]);
 
   // invoke after Brick move
   useEffect(() => {
-    //null
-    if (!currentSelectIdx.current) return;
-
-    console.log(
-      "flagFunc && switchFlag.current",
-      flagFunc && switchFlag.current
-    );
+    //null mute
+    if (!currentSelectIdx.current || !runOnce.current) return;
+    //idx選擇一致 mute
+    if (preSelectIdx.current === currentSelectIdx.current) return
+    preSelectIdx.current = currentSelectIdx.current
+    // currentSelectIdx.current
+    // console.log(
+    //   "flagFunc && switchFlag.current",
+    //   flagFunc && switchFlag.current
+    // );
     if (flagFunc && switchFlag.current) {
       flagFunc(currentEventObj.current);
       console.log("Flag", currentEventObj.current);
+      runOnce.current = true;
       return;
     }
 
     if (onClick) {
       onClick(currentEventObj.current);
       console.log("onClick", currentEventObj.current);
+      runOnce.current = true;
       return;
     }
   }, [BrickX]);
@@ -192,17 +196,15 @@ const TabLv1_v2 = ({
                 <li
                   className={`${classes.listUnit} ${
                     val.disabled && classes.disabled
-                  }`}
+                    }`}
                   key={idx + "tab"}
                   ref={ListUnit}
                   onClick={(e) =>
                     val.disabled ||
                     handleTabClick({
                       event: e,
-                      path: val.path,
                       idx,
-                      customVal: val[customKey],
-                      customFlagVal: val[flagKey],
+                      feedBack: val,
                     })
                   }
                 >
@@ -211,6 +213,7 @@ const TabLv1_v2 = ({
               );
             })}
           </ul>
+          {/* --------------v--move Brick-----v------------ */}
           <div className={classes.BrickTrack}>
             <div className={classes.Line}></div>
             <div
@@ -221,6 +224,7 @@ const TabLv1_v2 = ({
               }}
             ></div>
           </div>
+          {/* --------------^--move Brick-----^------------ */}
         </div>
       </div>
       <div className={classes.test}></div>

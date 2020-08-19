@@ -19,6 +19,7 @@ import Component2 from "./TestHOC/Component2";
 import HOCC from "./HOCC";
 import TryUseReduce2 from "./hook_play/TryUseReduce2";
 import TabLv1_v2 from "../src/TabLv1_v2";
+import TabLv1_v2_EX from '../src/TabLv1_v2_EX'
 
 function App() {
   //inject new props
@@ -26,13 +27,13 @@ function App() {
 
   const list = [
     {
-      TabName: "StateTab1",
-      // disabled: `(default)false or true`,
+      TabName: "StateTab1121212",
+      disabled: true,
       customKey: "num1",
       otherFunc: true,
     },
     {
-      TabName: "StateTab2",
+      TabName: "StateTab2212",
       // disabled: `(default)false or true`,
       customKey: "num2",
     },
@@ -40,6 +41,18 @@ function App() {
       TabName: "StateTab3",
       // disabled: `(default)false or true`,
       customKey: "num3",
+    },
+    {
+      TabName: "StateTab4",
+      customKey: "num4",
+    },
+    {
+      TabName: "StateTab5",
+      customKey: "num5",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
     },
   ];
 
@@ -68,13 +81,14 @@ function App() {
       <DemoHook />
       <hr /> */}
       <div style={{ background: "black" }}>
-        <TabLv1_v2
+        <TabLv1_v2_EX
           Tablist={list}
           customKey="customKey"
           customInitialVal="num1"
           onClick={setCurrent}
           flagKey="otherFunc"
           flagFunc={myFunc}
+          defaultIdx={2}
         />
       </div>
       {/* <EnhanceComponent /> */}
