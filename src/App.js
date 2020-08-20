@@ -20,6 +20,7 @@ import HOCC from "./HOCC";
 import TryUseReduce2 from "./hook_play/TryUseReduce2";
 import TabLv1_v2 from "../src/TabLv1_v2";
 import TabLv1_v2_EX from '../src/TabLv1_v2_EX'
+import Timertest from '../src/Timertest'
 
 function App() {
   //inject new props
@@ -91,6 +92,7 @@ function App() {
           defaultIdx={2}
         />
       </div>
+      <Timertest />
       {/* <EnhanceComponent /> */}
       {/* <HOCC /> */}
       {/* <TryUseReduce /> */}
