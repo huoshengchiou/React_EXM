@@ -13,36 +13,34 @@ const TabLv1_v2 = ({
   defaultIdx = 0,
 }) => {
   //TODO由自定義key建立default selection
-  const deBugMode = false
+  const deBugMode = true;
 
-  const guideMsg =
-    [
-      {
-        TabName: "Tab1",
-        id: "1",
-        追加Func標記: true,
-      },
-      {
-        TabName: "Tab2",
-        disabled: true,
-        id: "2",
-
-      },
-      {
-        TabName: "Tab3",
-        // disabled: `(default)false or true`,
-        id: "3",
-      },
-      {
-        TabName: "Tab4",
-        // disabled: `(default)false or true`,
-        id: "4",
-      },
-    ];
+  const guideMsg = [
+    {
+      TabName: "Tab1",
+      id: "1",
+      追加Func標記: true,
+    },
+    {
+      TabName: "Tab2",
+      disabled: true,
+      id: "2",
+    },
+    {
+      TabName: "Tab3",
+      // disabled: `(default)false or true`,
+      id: "3",
+    },
+    {
+      TabName: "Tab4",
+      // disabled: `(default)false or true`,
+      id: "4",
+    },
+  ];
   //record all DOMs
-  const refs = useRef([])
+  const refs = useRef([]);
   //record all DOMs width
-  const unitWidthMap = useRef([])
+  const unitWidthMap = useRef([]);
   //record single Margin width
   const SingleMarginWidth = useRef(null);
   //for resize event
@@ -59,10 +57,10 @@ const TabLv1_v2 = ({
 
   //initial func setting all parameter
   const initialSetting = () => {
+    console.log("initial setting");
     //block when nothing rendered
-    if (refs.current.length === 0) return
+    if (refs.current.length === 0) return;
     unitWidthMap.current = refs.current.map((DOM, idx) => {
-
       if (idx === 2) {
         SingleMarginWidth.current =
           window
@@ -70,15 +68,18 @@ const TabLv1_v2 = ({
             .getPropertyValue("margin-left")
             .split("p")[0] * 1;
       }
-      return window
-        .getComputedStyle(DOM, null)
-        .getPropertyValue("width")
-        .split("p")[0] * 1;
 
-    })
-    currentSelectIdx.current = defaultIdx
+      const a =
+        window
+          ?.getComputedStyle(DOM, null)
+          .getPropertyValue("width")
+          .split("p")[0] * 1;
+      console.log(a);
+      return a;
+    });
     //TODO初始值設定寬度
     // //建立moveBrick寬度
+    currentSelectIdx.current = defaultIdx;
     setBrickWidth(unitWidthMap.current[currentSelectIdx.current]);
   };
   //initial setting
@@ -93,7 +94,6 @@ const TabLv1_v2 = ({
     };
   }, []);
 
-
   // useEffect(() => {
   //   if (!customInitialVal) return;
   //   // console.log('觸發改變')
@@ -103,20 +103,16 @@ const TabLv1_v2 = ({
   //Brick move
   const [BrickX, setBrickX] = useState(0);
 
-
   //sum for width of elements
   const sumDis = (idx) => {
-    let sum = 0
-    if (idx === 0) return sum
+    let sum = 0;
+    if (idx === 0) return sum;
     for (let i = 0; i < idx; i++) {
-      sum += unitWidthMap.current[i]
+      sum += unitWidthMap.current[i];
     }
-    return sum
-  }
-  const handleTabClick = ({
-    idx = 0,
-    feedBack = {},
-  }) => {
+    return sum;
+  };
+  const handleTabClick = ({ idx = 0, feedBack = {} }) => {
     if (refs.current.length === 0) return;
     if (feedBack.disabled) return;
 
@@ -128,25 +124,36 @@ const TabLv1_v2 = ({
     switchFlag.current = feedBack[flagKey] || false;
     //same element width
     if (BrickWidth === unitWidthMap.current[currentSelectIdx.current]) {
-      let moveDis = (currentSelectIdx.current * SingleMarginWidth.current + sumDis(currentSelectIdx.current))
+      let moveDis =
+        currentSelectIdx.current * SingleMarginWidth.current +
+        sumDis(currentSelectIdx.current);
       setBrickX(moveDis);
     }
     setBrickWidth(unitWidthMap.current[currentSelectIdx.current]);
-    deBugMode && console.log('Brick寬度改變')
+    deBugMode && console.log("Brick寬度改變");
   };
 
   //Decide Brick X position
+  // useEffect(() => {
+  //   if (refs.current.length === 0 || BrickWidth === null) return;
+  //   // rugular count
+
+  //   deBugMode && console.log("校正移動");
+  // }, [BrickWidth]);
+
   useEffect(() => {
-    if (refs.current.length === 0 || BrickWidth === null) return;
-    // rugular count
-    let moveDis = (currentSelectIdx.current * SingleMarginWidth.current + sumDis(currentSelectIdx.current))
+    // if (!currentSelectIdx.current) return;
+    console.log("move Brick");
+    let moveDis =
+      currentSelectIdx.current * SingleMarginWidth.current +
+      sumDis(currentSelectIdx.current);
     setBrickX(moveDis);
-    deBugMode && console.log('校正移動')
-  }, [BrickWidth]);
+  }, [currentSelectIdx.current]);
 
   // invoke after Brick move
   useEffect(() => {
     if (currentSelectIdx.current === defaultIdx && !runOnce.current) return;
+    console.log("function");
 
     if (flagFunc && switchFlag.current) {
       flagFunc(currentEventObj.current);
@@ -161,35 +168,35 @@ const TabLv1_v2 = ({
     }
   }, [BrickX]);
 
-
-
   return (
     <>
       {guide && console.log("guideMsg==>", guideMsg)}
       <div className={classes.edgeWrapper}>
         <div className={classes.listWrapper}>
           <ul className={classes.textList}>
-            {Tablist.map((val, idx) => {
-              return (
-                <li
-                  className={`${classes.listUnit} ${
-                    val.disabled && classes.disabled
+            {Tablist.length !== 0 &&
+              Tablist.map((val, idx) => {
+                return (
+                  <li
+                    className={`${classes.listUnit} ${
+                      val.disabled && classes.disabled
                     }`}
-                  key={idx + "tab"}
-                  ref={ref => { refs.current[idx] = ref }}
-                  onClick={() =>
-                    val.disabled ||
-                    handleTabClick({
-                      idx,
-                      feedBack: val,
-                    })
-                  }
-                >
-                  {val.TabName}
-                </li>
-
-              );
-            })}
+                    key={idx + "tab"}
+                    ref={(ref) => {
+                      refs.current[idx] = ref;
+                    }}
+                    onClick={() =>
+                      val.disabled ||
+                      handleTabClick({
+                        idx,
+                        feedBack: val,
+                      })
+                    }
+                  >
+                    {val.TabName}
+                  </li>
+                );
+              })}
           </ul>
           {/* --------------v--move Brick-----v------------ */}
           <div className={classes.BrickTrack}>
