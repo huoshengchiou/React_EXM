@@ -8,26 +8,32 @@ import Child2 from './Parent/Child2'
 import ClassText from './Parent/ClassText'
 
 function DemoHook() {
+
+
   console.log("DemoHook render");
+
+
+
+
   const initialSetting = () => {
-    console.log("initialSetting func run");
+    // console.log("initialSetting func run");
     const obj = { initialVal: "initial value" };
     return obj.initialVal;
   };
+
+
   const [text, setText] = useState(initialSetting());
 
-  useEffect(() => {
-    // setText()
-    return () => {
-      alert("byebye");
-    };
-  }, []);
+
   const handleChangeText = () => {
     setText("change value");
   };
+
+
   // ----------------------------------
   const [disapper, setDisapper] = useState(false);
   // ----------------------------------
+
 
   const EnhanceGuest = myHOC(HOCguest)
 
@@ -35,11 +41,12 @@ function DemoHook() {
     <>
 
       <h3>DemoHook</h3>
-      <Child2 />
-      <hr />
-      <ClassText />
-      {/* <div>{text}</div> */}
-      {/* <button onClick={handleChangeText}>change text</button> */}
+      {/* <Child2 /> */}
+      {/* <hr /> */}
+      {/* <ClassText /> */}
+      {/* ------------------------------------------ */}
+      <div>{text}</div>
+      <button onClick={handleChangeText}>change text</button>
       <button
         onClick={() => {
           setDisapper(!disapper);
@@ -50,12 +57,14 @@ function DemoHook() {
       <hr />
       {!disapper && <Counter />}
       <hr />
+      {/* --------------------------------------------------- */}
+      {/* <div>context</div> */}
       {/* <Parent /> */}
       <hr />
       {/* <CallBack /> */}
       <hr />
-      {/* <HOCguest /> */}
-      {/* <EnhanceGuest /> */}
+      {/* <HOCguest />
+      <EnhanceGuest /> */}
     </>
   );
 }

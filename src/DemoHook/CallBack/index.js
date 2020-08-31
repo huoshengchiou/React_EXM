@@ -11,10 +11,10 @@ function CallBack() {
     return num;
   };
 
-  //useCallback
-  //   const getNum = useCallback(() => {
-  //     return num;
-  //   }, [num]);
+  // useCallback
+  // const getNum = useCallback(() => {
+  //   return num;
+  // }, [num]);
 
   return (
     <>
