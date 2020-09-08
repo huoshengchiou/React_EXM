@@ -21,6 +21,7 @@ import TryUseReduce2 from "./hook_play/TryUseReduce2";
 import TabLv1_v2 from "../src/TabLv1_v2";
 import TabLv1_v2_EX from "../src/TabLv1_v2_EX";
 import Timertest from "../src/Timertest";
+import InputImg from "../src/InputImg";
 
 function App() {
   //inject new props
@@ -78,9 +79,9 @@ function App() {
       {/* <TestReturn /> */}
       {/* <Test_listarr /> */}
       {/* <Test_Tab /> */}
-      <hr />
+      {/* <hr />
       <DemoHook />
-      <hr />
+      <hr /> */}
       {/* <div style={{ background: "black" }}>
         <TabLv1_v2_EX
           Tablist={list}
@@ -97,6 +98,7 @@ function App() {
       {/* <HOCC /> */}
       {/* <TryUseReduce /> */}
       {/* <TryUseReduce2 /> */}
+      <InputImg />
     </>
   );
 }
