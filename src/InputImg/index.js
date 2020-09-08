@@ -87,9 +87,9 @@ function InputImg() {
           canvas.height = height;
         }
 
-        ctx.fillStyle = "rgb(0, 0, 0)"; //default
+        // ctx.fillStyle = "rgb(0, 0, 0)"; //default
         ctx.rect(0, 0, width, height);
-        ctx.fill();
+        // ctx.fill();
 
         ctx.drawImage(image, x, y, width, image.height * ratio);
         const dataURL = canvas.toDataURL("image/jpg");
