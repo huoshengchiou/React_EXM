@@ -45,7 +45,11 @@ function InputImg() {
   const handleUp = (e) => {
     // const img = new Image();
     const [file] = e.target.files;
-    console.log("file", file); //沒有URL資訊
+    // const reader = new FileReader()
+    // reader.onload = function ({ target: { result } }) {
+    //   console.log('hello', result.byteLength) // result 是一個 ArrayBuffer
+    // }
+    console.table(e.target.files); //沒有URL資訊
     //file or Blob
     // const objectURL = URL.createObjectURL(blob);
     const imgDOM = new Image();
@@ -93,6 +97,8 @@ function InputImg() {
 
         ctx.drawImage(image, x, y, width, image.height * ratio);
         const dataURL = canvas.toDataURL("image/jpg");
+
+        console.log(' dataURL', dataURL)
         //解base64
         const blobBin = atob(dataURL.split(",")[1]);
         const array = blobBin.split("").map((c) => c.charCodeAt());
@@ -127,6 +133,21 @@ function InputImg() {
   // ---------------file obj 處理-------
   //   FileReader 物件是可以讓網頁非同步的去讀取在客戶端的檔案
   // FileReader 所接受的參數就是 File 和 Blob 的物件。
+
+
+  const handleDL = (e) => {
+    const [file] = e.target.files
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    //下載流程
+    reader.onload = () => {
+      const a = document.createElement('a')
+      a.href = reader.result
+      a.download = 'fileName'
+      a.click()
+    }
+  }
+
   return (
     <>
       <input id="upload-file" type="file" multiple onChange={handleUp} />
@@ -134,6 +155,11 @@ function InputImg() {
       {passImg}
       <input type="file" onChange={handleUp2} />
       {/* <img ref={imgPos} alt="" /> */}
+
+      <hr />
+      <div>download</div>
+      <input type="file" onChange={handleDL} />
+
     </>
   );
 }

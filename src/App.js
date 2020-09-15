@@ -23,6 +23,8 @@ import TabLv1_v2_EX from "../src/TabLv1_v2_EX";
 import Timertest from "../src/Timertest";
 import InputImg from "../src/InputImg";
 
+import TestBlob from '../src/TestBlob'
+
 function App() {
   //inject new props
   const EnhanceComponent = HOC(Component1, Component2);
@@ -98,7 +100,8 @@ function App() {
       {/* <HOCC /> */}
       {/* <TryUseReduce /> */}
       {/* <TryUseReduce2 /> */}
-      <InputImg />
+      {/* <InputImg /> */}
+      <TestBlob />
     </>
   );
 }
