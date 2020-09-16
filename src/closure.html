@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>closure</title>
+</head>
+
+<body>
+    <script>
+        // ------簡易計數器-----
+        // let count = 0;
+        // console.log(count);
+        // function foo() {
+        //     count += 1
+        //     return count
+        // }
+        // console.log(foo());
+        // console.log(foo());
+        // console.log(foo());
+        function counter() {
+            let count = 0
+            function countinner() {
+                count += 1;
+                return count //遞增的值傳回操作環境
+            }
+            return countinner //回傳一個包含自由變數的function以及可以賦值給自由變數的操作環境
+        }
+        const result = counter(); //回傳function會被存入result
+        console.log(result());
+        console.log(result());
+        console.log(result());
+        // ------------closure所得到的值------
+
+
+        const test1 = (a) => {
+            // let count = 0;
+            const arr = ['typeA', 'typeB', 'typeC']
+            let obj = {
+                count: 0,
+                name: 'jack',
+                status: ''
+            }
+
+            return (b) => {
+                console.log(a + b)
+                obj.status = arr[obj.count]
+                obj.count++;
+                if (obj.count > 1) obj.count = 0
+
+                return obj
+
+            }
+        }
+
+        const result1 = test1()
+        const arr2 = [1, 2, 3]
+        console.log('result', result1('world'))
+        console.log('result', result1('world'))
+        console.log('result', result1('world'))
+        // const here = arr2.map(val => result1())
+        // console.log(here)
+
+
+        const closureFunction = function (var1) {
+
+            return function (var2) {
+                console.log("Sum of " + var1 + " and " + var2 + "");
+                return var1 + var2;
+            }
+        }(2);  //just return a 'closure' function
+
+        console.log(closureFunction(3)); //prints 'Sum of 2 and 3 5'
+
+
+
+        // const closureFunction1 = function (var1, var2) {
+        //     let privateVar = var1 + var2;
+
+        //     console.log("Sum of " + var1 + " and " + var2 + "");
+        //     return function () { return privateVar + 1; }
+        // }(2, 3);  //prints 'Sum of 2 and 3'
+
+        // console.log(closureFunction1()); //prints '5'
+        // console.log(closureFunction1()); //prints '5'
+
+
+
+        function setTimer(msg, n) {
+
+            setTimeout(() => { alert(msg), n }); //async
+            msg = 'inner_set_value'; //操作環境內的傳入值受到改變
+
+        }
+        setTimer('outside_value', 2000);
+    </script>
+</body>
+
+</html>
