@@ -24,6 +24,7 @@ import Timertest from "../src/Timertest";
 import InputImg from "../src/InputImg";
 
 import TestBlob from '../src/TestBlob'
+import ClassComponent from '../src/ClassComponent'
 
 function App() {
   //inject new props
@@ -101,7 +102,8 @@ function App() {
       {/* <TryUseReduce /> */}
       {/* <TryUseReduce2 /> */}
       {/* <InputImg /> */}
-      <TestBlob />
+      {/* <TestBlob /> */}
+      <ClassComponent/>
     </>
   );
 }
