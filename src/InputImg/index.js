@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import classes from "./style.module.scss";
 
 function InputImg() {
   const arr = ["123", "456"];
@@ -113,6 +114,7 @@ function InputImg() {
       }
     });
   };
+  console.time('time to do something')
 
   const handleUp2 = (e) => {
     const [file] = e.target.files;
@@ -125,8 +127,11 @@ function InputImg() {
         // getFileBase64Encode(r.imageFile).then((b64) => {
         //   URL.revokeObjectURL(img.src);
         //   setPassImg(b64);
+
+
         // })
       );
+
     };
   };
 
@@ -148,6 +153,54 @@ function InputImg() {
     }
   }
 
+
+  // function uploadFile(file) {
+  //   var chunkSize = 1024 * 1024;   // 每片1M大小
+  //   var totalSize = file.size;
+  //   var chunkQuantity = Math.ceil(totalSize/chunkSize);  //分片总数
+  //   var offset = 0;  // 偏移量
+
+  //   var reader = new FileReader();
+  //   reader.onload = function(e) {
+  //     var xhr = new XMLHttpRequest();
+  //     xhr.open("POST","http://xxxx/upload?fileName="+file.name);
+  //     xhr.overrideMimeType("application/octet-stream");
+
+  //     xhr.onreadystatechange = function() {
+  //       if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+  //         ++offset;
+  //         if(offset === chunkQuantity) {
+  //           alert("上传完成");
+  //         } else if(offset === chunkQuantity-1){
+  //           blob = file.slice(offset*chunkSize, totalSize);   // 上传最后一片
+  //           reader.readAsBinaryString(blob);
+  //         } else {
+  //           blob = file.slice(offset*chunkSize, (offset+1)*chunkSize); 
+  //           reader.readAsBinaryString(blob);
+  //         }
+  //       }else {
+  //         alert("上传出错");
+  //       }
+  //     }
+
+  //     if(xhr.sendAsBinary) {
+  //       xhr.sendAsBinary(e.target.result);   // e.target.result是此次读取的分片二进制数据
+  //     } else {
+  //       xhr.send(e.target.result);
+  //     }
+  //   }
+  //    var blob = file.slice(0, chunkSize);
+  //    reader.readAsBinaryString(blob);
+  // }
+
+  // 作者：艾特老干部
+  // 链接：https://juejin.im/post/6844903503727427598
+  // 来源：掘金
+  // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+  const translate = "1223\n23424"
+
   return (
     <>
       <input id="upload-file" type="file" multiple onChange={handleUp} />
@@ -160,6 +213,12 @@ function InputImg() {
       <div>download</div>
       <input type="file" onChange={handleDL} />
 
+
+      <hr />
+      <div>test upload digest</div>
+      <input type="file" />
+      <div style={{ width: '300px', height: '300px', background: 'gray', whiteSpace: 'pre-line' }}>{translate}</div>
+      <div className={classes.testTab}>122323</div>
     </>
   );
 }

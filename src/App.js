@@ -22,7 +22,6 @@ import TabLv1_v2 from "../src/TabLv1_v2";
 import TabLv1_v2_EX from "../src/TabLv1_v2_EX";
 import Timertest from "../src/Timertest";
 import InputImg from "../src/InputImg";
-
 import TestBlob from "../src/TestBlob";
 import ClassComponent from "../src/ClassComponent";
 import DragTest from "../src/DragTest";
@@ -118,6 +117,9 @@ function App() {
       {/* <DIS_performance /> */}
       {/* <TestHybird /> */}
       <CssLoader />
+      {/* <TestHybird />
+      <ClassComponent />
+      <EdProject /> */}
     </>
   );
 }

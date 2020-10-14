@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.kickPad{
+  width: 5rem;
+  height: 5rem;
+  margin: 1rem 0.5rem;
+  cursor: pointer;
+}
+
+.kickPad{
+  background: rgb(52, 52, 138);
+}
+.kickPad.active{
+  background: rgb(26, 26, 177);
+
+}
+.kickTrack{
+  display: flex;
+  align-items: center;
+  width: 70%;
+  justify-content: space-between;
+}
+.kick{
+  display: flex;
+
+}
