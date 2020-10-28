@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import AnimateCard from './AnimateCard'
 import Banner from "./Banner";
 import Rxjs_main from "./Rxjs_main";
 import Test_memo from "./Test_memo";
@@ -25,7 +25,8 @@ import InputImg from "../src/InputImg";
 
 import TestBlob from '../src/TestBlob'
 import ClassComponent from '../src/ClassComponent'
-
+import DragTest from '../src/DragTest'
+import Imglazy from '../src/Imglazy'
 function App() {
   //inject new props
   const EnhanceComponent = HOC(Component1, Component2);
@@ -103,7 +104,10 @@ function App() {
       {/* <TryUseReduce2 /> */}
       {/* <InputImg /> */}
       {/* <TestBlob /> */}
-      <ClassComponent/>
+      {/* <ClassComponent/> */}
+      {/* < DragTest/> */}
+      {/* <Imglazy/> */}
+      <AnimateCard/>
     </>
   );
 }
