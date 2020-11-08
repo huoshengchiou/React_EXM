@@ -4,13 +4,13 @@
   box-sizing: border-box;
 }
 
-body {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1000px;
-}
+// body {
+//   min-height: 100vh;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   perspective: 1000px;
+// }
 //sense region
 .wrapper {
   //   background: rgb(48, 141, 172);
@@ -18,7 +18,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: lightpink;
+  // background: lightpink;
 }
 .card {
   //   transition: all 0.5 ease;

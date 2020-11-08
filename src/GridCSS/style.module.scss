@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+//大外框用grid 內部用flex
+main {
+  height: 50vh;
+  display: grid;
+  //比例等分，fr會切割除了px %定義外的寬度
+  //   grid-template-columns: 3fr 2fr 1fr;
+  //   grid-template-columns: 300px 300px 50%;
+  grid-template-columns: 1fr 1fr 1fr;
+  //   grid-auto-rows: 150px;
+  //   grid-template-columns: repeat(3, 200px);
+  //下列才有RWD fill會根據空間擺200px 有多會擺空格
+  //   grid-template-columns: repeat(auto-fill, 200px);
+  //   fit就不會擺空格
+  //   grid-template-columns: repeat(auto-fit, 200px);
+  //   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  //grid間隔
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+
+  //   橫切
+  //   grid-template-rows: 300px 300px;
+  //因為沒定義容器高度，只會拆分現有元素的高度
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.box1 {
+  background: lightyellow;
+}
+.box2 {
+  background: lightskyblue;
+}
+.box3 {
+  background: lightpink;
+}
+// .box3 {
+//   //   grid-column-start: 1;
+//   //   grid-column-end: 3;
+//到底
+//   //   grid-column-end: -1;
+
+//   grid-column: 1/3;
+// }
+
+.box1 {
+  //拿取兩個column
+  grid-column: span 2;
+  //   grid-column: 1/2;
+  //   grid-row: 1/3;
+}
+//但必須要定義box1位置不然會回到default
+.box2 {
+  grid-row: 2/4;
+}
+.box3 {
+  grid-column: 2/4;
+}
+
+// 不想用算的區分
+
+.dif {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "box4 box5" "box6 box6";
+  //   .代表空白
+  //   grid-template-areas: "box4 box5" " . box6";
+  //   justify-items: center;
+  //   align-items: center;
+}
+
+.box4 {
+  background: lightyellow;
+  grid-area: box4;
+  //   影響單一element
+  align-self: center;
+}
+.box5 {
+  background: lightskyblue;
+  grid-area: box5;
+}
+.box6 {
+  background: lightpink;
+  grid-area: box6;
+}

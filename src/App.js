@@ -27,6 +27,7 @@ import TestBlob from '../src/TestBlob'
 import ClassComponent from '../src/ClassComponent'
 import DragTest from '../src/DragTest'
 import Imglazy from '../src/Imglazy'
+import GridCSS from './GridCSS'
 function App() {
   //inject new props
   const EnhanceComponent = HOC(Component1, Component2);
@@ -107,7 +108,8 @@ function App() {
       {/* <ClassComponent/> */}
       {/* < DragTest/> */}
       {/* <Imglazy/> */}
-      <AnimateCard/>
+      {/* <AnimateCard/> */}
+      <GridCSS/>
     </>
   );
 }
