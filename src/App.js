@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AnimateCard from './AnimateCard'
+import AnimateCard from "./AnimateCard";
 import Banner from "./Banner";
 import Rxjs_main from "./Rxjs_main";
 import Test_memo from "./Test_memo";
@@ -23,11 +23,12 @@ import TabLv1_v2_EX from "../src/TabLv1_v2_EX";
 import Timertest from "../src/Timertest";
 import InputImg from "../src/InputImg";
 
-import TestBlob from '../src/TestBlob'
-import ClassComponent from '../src/ClassComponent'
-import DragTest from '../src/DragTest'
-import Imglazy from '../src/Imglazy'
-import GridCSS from './GridCSS'
+import TestBlob from "../src/TestBlob";
+import ClassComponent from "../src/ClassComponent";
+import DragTest from "../src/DragTest";
+import Imglazy from "../src/Imglazy";
+import GridCSS from "./GridCSS";
+import ContextReducer from "./ContextReducer";
 function App() {
   //inject new props
   const EnhanceComponent = HOC(Component1, Component2);
@@ -109,7 +110,8 @@ function App() {
       {/* < DragTest/> */}
       {/* <Imglazy/> */}
       {/* <AnimateCard/> */}
-      <GridCSS/>
+      {/* <GridCSS /> */}
+      <ContextReducer />
     </>
   );
 }
