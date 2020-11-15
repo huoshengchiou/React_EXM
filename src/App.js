@@ -29,6 +29,7 @@ import DragTest from "../src/DragTest";
 import Imglazy from "../src/Imglazy";
 import GridCSS from "./GridCSS";
 import ContextReducer from "./ContextReducer";
+import DIS_performance from "./DIS_performance";
 function App() {
   //inject new props
   const EnhanceComponent = HOC(Component1, Component2);
@@ -111,7 +112,8 @@ function App() {
       {/* <Imglazy/> */}
       {/* <AnimateCard/> */}
       {/* <GridCSS /> */}
-      <ContextReducer />
+      {/* <ContextReducer /> */}
+      <DIS_performance />
     </>
   );
 }
