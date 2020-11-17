@@ -31,10 +31,15 @@ import ContextReducer from "./ContextReducer";
 import DIS_performance from "./DIS_performance";
 import TestHybird from "./TestHybird";
 import CssLoader from "./CssLoader";
+import EdProject from "../src/EdProject";
+import IfinityScroll from "../src/IfinityScroll";
+import { useScrollFetch } from "./IfinityScroll/useScrollFetch";
+import MouseClick from "./MouseClick";
+
 function App() {
   //inject new props
   const EnhanceComponent = HOC(Component1, Component2);
-
+  const { setGoFetch } = useScrollFetch({});
   const list = [
     {
       TabName: "StateTab1121212",
@@ -64,14 +69,90 @@ function App() {
       TabName: "StateTab6kokokokokokok",
       customKey: "num6",
     },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "StateTab6kokokokokokok",
+      customKey: "num6",
+    },
+    {
+      TabName: "我是最後一個",
+      customKey: "num6",
+    },
   ];
-
+  const [arr, setArr] = useState(list);
   const [current, setCurrent] = useState("num1");
 
   const myFunc = () => {
     console.log("invoke my Func");
   };
-
+  const handleIncreaseArr = () => {
+    setArr((pre) => [
+      ...pre,
+      {
+        TabName: "last",
+        customKey: "num6",
+      },
+    ]);
+  };
   return (
     <>
       {/* <Rxjs_main /> */}
@@ -120,6 +201,17 @@ function App() {
       {/* <TestHybird />
       <ClassComponent />
       <EdProject /> */}
+      {/* <ClassComponent />
+      <EdProject /> */}
+      {/* <button onClick={handleIncreaseArr}>test</button> */}
+      {/* <IfinityScroll refreshFunc={handleIncreaseArr}>
+        {arr.map((val, idx) => (
+          <div key={idx + "de"} style={{ fontSize: "40px" }}>
+            {val.TabName}
+          </div>
+        ))}
+      </IfinityScroll>
+      <MouseClick /> */}
     </>
   );
 }
