@@ -31,6 +31,7 @@ import GridCSS from "./GridCSS";
 import ContextReducer from "./ContextReducer";
 import DIS_performance from "./DIS_performance";
 import TestHybird from "./TestHybird";
+import CssLoader from "./CssLoader";
 function App() {
   //inject new props
   const EnhanceComponent = HOC(Component1, Component2);
@@ -115,7 +116,8 @@ function App() {
       {/* <GridCSS /> */}
       {/* <ContextReducer /> */}
       {/* <DIS_performance /> */}
-      <TestHybird />
+      {/* <TestHybird /> */}
+      <CssLoader />
     </>
   );
 }
