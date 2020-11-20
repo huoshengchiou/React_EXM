@@ -35,6 +35,7 @@ import EdProject from "../src/EdProject";
 import IfinityScroll from "../src/IfinityScroll";
 import { useScrollFetch } from "./IfinityScroll/useScrollFetch";
 import MouseClick from "./MouseClick";
+import Invite from "./Invite";
 
 function App() {
   //inject new props
@@ -212,6 +213,7 @@ function App() {
         ))}
       </IfinityScroll>
       <MouseClick /> */}
+      <Invite />
     </>
   );
 }
