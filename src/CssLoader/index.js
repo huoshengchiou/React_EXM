@@ -3,6 +3,21 @@ import React from "react";
 import classes from "./style.module.scss";
 
 const CssLoader = () => {
+  console.log(1);
+
+  const promise = () => {
+    return new Promise((resolve, reject) => {
+      reject("失敗");
+    });
+  };
+  promise().then(
+    () => {
+      console.log("成功");
+    },
+    () => {
+      console.log("失敗");
+    }
+  );
   return (
     <>
       {/* spinner */}

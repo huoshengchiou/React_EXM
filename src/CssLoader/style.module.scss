@@ -17,12 +17,12 @@ body {
     width: 100%;
     height: 100%;
     border: 10px solid transparent;
-    border-top-color: #ad60f5;
+    border-top-color: #2de7fe;
     border-radius: 50%;
     animation: spinnerA 1.2s linear infinite;
     &:nth-child(2) {
       border: 10px solid transparent;
-      border-bottom-color: #ad60f5;
+      border-bottom-color: #0487d9;
       animation: spinnerB 1.2s linear infinite;
     }
   }
@@ -106,7 +106,7 @@ body {
     top: 0;
     width: 50px;
     height: 50px;
-    background: lightblue;
+    background: #2de7fe;
     animation: flip 2s linear infinite;
     transform-origin: right bottom;
     &:nth-child(2) {
