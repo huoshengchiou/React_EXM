@@ -1,14 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+    <style>
+      body {
+        margin: 0;
+      }
 
-<body>
+      .container {
+        background-color: #333;
+        padding: 1rem;
+        margin-top: 1rem;
+      }
 
-</body>
+      .draggable {
+        padding: 1rem;
+        background-color: white;
+        border: 1px solid black;
+        cursor: move;
+      }
 
+      .draggable.dragging {
+        opacity: 0.5;
+      }
+
+      /* Background Styles Only */
+
+      @import url("https://fonts.googleapis.com/css?family=Raleway");
+
+      * {
+        font-family: Raleway;
+      }
+
+      .side-links {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+      }
+
+      .side-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        margin-bottom: 10px;
+        color: white;
+        width: 180px;
+        padding: 10px 0;
+        border-radius: 10px;
+      }
+
+      .side-link-youtube {
+        background-color: red;
+      }
+
+      .side-link-twitter {
+        background-color: #1da1f2;
+      }
+
+      .side-link-github {
+        background-color: #6e5494;
+      }
+
+      .side-link-text {
+        margin-left: 10px;
+        font-size: 18px;
+      }
+
+      .side-link-icon {
+        color: white;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <p class="draggable" draggable="true">1</p>
+      <p class="draggable" draggable="true">2</p>
+    </div>
+    <div class="container">
+      <p class="draggable" draggable="true">3</p>
+      <p class="draggable" draggable="true">4</p>
+    </div>
+  </body>
+  <script>
+    const draggables = document.querySelectorAll(".draggable");
+    const containers = document.querySelectorAll(".container");
+
+    draggables.forEach((draggable) => {
+      draggable.addEventListener("dragstart", () => {
+        draggable.classList.add("dragging");
+      });
+
+      draggable.addEventListener("dragend", () => {
+        draggable.classList.remove("dragging");
+      });
+    });
+
+    containers.forEach((container) => {
+      container.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        const afterElement = getDragAfterElement(container, e.clientY);
+        const draggable = document.querySelector(".dragging");
+        if (afterElement == null) {
+          container.appendChild(draggable);
+        } else {
+          container.insertBefore(draggable, afterElement);
+        }
+      });
+    });
+
+    function getDragAfterElement(container, y) {
+      const draggableElements = [
+        ...container.querySelectorAll(".draggable:not(.dragging)"),
+      ];
+
+      return draggableElements.reduce(
+        (closest, child) => {
+          const box = child.getBoundingClientRect();
+          const offset = y - box.top - box.height / 2;
+          if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+          } else {
+            return closest;
+          }
+        },
+        { offset: Number.NEGATIVE_INFINITY }
+      ).element;
+    }
+  </script>
 </html>

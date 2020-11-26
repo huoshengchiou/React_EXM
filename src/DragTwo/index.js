@@ -1,0 +1,117 @@
+import React, { useState, useRef } from "react";
+import classes from "./style.module.scss";
+
+const data = [
+  { title: "group1", items: ["1", "2", "3"] },
+  { title: "group2", items: ["4", "5"] },
+  { title: "group3", items: ["6", "7"] },
+];
+
+const DragNDrop = ({ data }) => {
+  const [list, setList] = useState(data);
+  const [dragging, setDragging] = useState(false);
+  const dragRef = useRef();
+  const dragNodeRef = useRef();
+
+  const handleDragEnd = () => {
+    console.log("end");
+    dragNodeRef.current.removeEventListener("dragend", handleDragEnd);
+    dragRef.current = null;
+    dragNodeRef.current = null;
+    setDragging(false);
+  };
+  const handleDragStart = (e, params) => {
+    console.log("drag", params);
+    //record data pos
+    dragRef.current = params;
+    dragNodeRef.current = e.target;
+    dragNodeRef.current.addEventListener("dragend", handleDragEnd);
+    setTimeout(() => {
+      setDragging(true);
+    }, 0);
+  };
+
+  const handleDragEnter = (e, params) => {
+    console.log("params", params);
+    const cerrentItem = dragRef.current;
+    if (e.target !== dragNodeRef.current) {
+      console.log("target not");
+      setList((oldList) => {
+        //grap old list deep
+        let newList = JSON.parse(JSON.stringify(oldList));
+        newList[params.grpI].items.splice(
+          params.itemI,
+          0,
+          newList[cerrentItem.grpI].items.splice(cerrentItem.itemI, 1)[0]
+        );
+        dragRef.current = params;
+        return newList;
+      });
+    }
+  };
+
+  const getStyle = (params) => {
+    const currentItem = dragRef.current;
+    if (
+      currentItem.grpI === params.grpI &&
+      currentItem.itemI === params.itemI
+    ) {
+      return classes.currentDndItem;
+    }
+    return "";
+  };
+
+  return (
+    <>
+      {list.map((grp, grpI) => (
+        <div
+          className={classes.dndGroup}
+          key={grpI}
+          onDragEnter={
+            dragging && !grp.items.length
+              ? (e) => handleDragEnter(e, { grpI, itemI: 0 })
+              : null
+          }
+        >
+          <div>{grp.title}</div>
+          {grp.items.map((item, itemI) => (
+            <div
+              draggable="true"
+              className={`${dragging && getStyle({ grpI, itemI })} ${
+                classes.dndItem
+              }`}
+              key={grpI + itemI}
+              //只有dragging啟動時才允許enter
+              onDragEnter={
+                dragging
+                  ? (e) => {
+                      handleDragEnter(e, { grpI, itemI });
+                    }
+                  : null
+              }
+              onDragStart={(e) => handleDragStart(e, { grpI, itemI })}
+            >
+              <div key={itemI}>
+                <p>{item}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </>
+  );
+};
+
+const DragTwo = () => {
+  return (
+    <>
+      <div className={classes.appHeader}>
+        <div className={classes.dragNdrop}>
+          <DragNDrop data={data} />
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default DragTwo;

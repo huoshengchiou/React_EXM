@@ -17,3 +17,52 @@ custom-tag {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.board {
+  width: 100px;
+  height: 60px;
+  background: teal;
+}
+.card {
+  width: 100px;
+  height: 20px;
+  background: yellowgreen;
+  margin-bottom: 5px;
+  > p {
+    color: white;
+  }
+}
+
+.section2 {
+  width: 800px;
+  min-height: 100px;
+  background: yellowgreen;
+}
+.fill {
+  background-image: url("http://source.unsplash.com/random/150x150");
+  position: relative;
+  width: 150px;
+  height: 150px;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+}
+.empty {
+  display: inline-block;
+  //10 more
+  height: 160px;
+  width: 160px;
+  margin: 10px;
+  border: 3px solid salmon;
+  background-color: white;
+}
+.hold {
+  border: solid #ccc 4px;
+}
+
+.hovered {
+  background: #f4f4f4;
+  border-style: dashed;
+}
+.invisible {
+  display: none;
+}
