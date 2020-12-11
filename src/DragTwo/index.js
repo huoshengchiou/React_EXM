@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { senseError } from "../mapError";
 import classes from "./style.module.scss";
 
 const data = [
@@ -7,9 +8,32 @@ const data = [
   { title: "group3", items: ["6", "7"] },
 ];
 
+//sample res
+
+const res = {
+  status: 200,
+  data: {
+    header: { status: "1234" },
+    body: { show: "res OK" },
+  },
+};
+
+const fakeAPI = (senseError, setRenderErr) => {
+  setTimeout(() => {
+    senseError(
+      res,
+      (res) => {
+        console.log(res);
+      },
+      setRenderErr
+    );
+  }, 5000);
+};
+
 const DragNDrop = ({ data }) => {
   const [list, setList] = useState(data);
   const [dragging, setDragging] = useState(false);
+  const [renderErr, setRenderErr] = useState(null);
   const dragRef = useRef();
   const dragNodeRef = useRef();
 
@@ -61,8 +85,13 @@ const DragNDrop = ({ data }) => {
     return "";
   };
 
+  useEffect(() => {
+    fakeAPI(senseError, setRenderErr);
+  }, []);
+
   return (
     <>
+      {renderErr}
       {list.map((grp, grpI) => (
         <div
           className={classes.dndGroup}
