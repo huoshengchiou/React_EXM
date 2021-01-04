@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CSStest from "./CSStest";
 // import AnimateCard from "./AnimateCard";
 // import Banner from "./Banner";
 // import Rxjs_main from "./Rxjs_main";
@@ -217,7 +218,8 @@ function App() {
       <MouseClick /> */}
       {/* <Invite /> */}
       {/* <AsyncPlay /> */}
-      <DragTwo />
+      {/* <DragTwo /> */}
+      <CSStest />
     </>
   );
 }
