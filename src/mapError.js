@@ -13,21 +13,44 @@ const apiSuccess = (x) => x.toUpperCase() === "OK";
 
 const readErrCode = (x) => codeMap.get(x);
 
+const payloadWhenErr = [];
+
 // codeMap.get(status);
 
-const handleErr = (status, setSome) => {
+const handleErr = (status, setState, f) => {
+  f(payloadWhenErr);
   //not specialresult in  case undefined
   readErrCode(status)
-    ? setSome(readErrCode(status))
-    : setSome(<TestC status={status} />);
+    ? setState(readErrCode(status))
+    : setState(<TestC status={status} />);
 };
 
-export const senseError = (res, f, setSome) => {
+export const senseError = (res, setState, f) => {
   //fetch fall
-  if (!fetchSuccess(res)) return;
+  if (!fetchSuccess(res)) {
+    f(payloadWhenErr);
+    return;
+  }
   const { header, body } = res.data;
   const { status } = header;
-  apiSuccess(status) ? f(body) : f([]);
-  if (apiSuccess(status)) return;
-  handleErr(status, setSome);
+  apiSuccess(status) ? f(body) : handleErr(status, setState, f);
+};
+
+const handleErr2 = (status, f, errF) => {
+  f(payloadWhenErr);
+  //not specialresult in  case undefined
+  readErrCode(status)
+    ? errF(readErrCode(status))
+    : errF(<TestC status={status} />);
+};
+
+export const senseError2 = (res, f, errF) => {
+  //fetch fall
+  if (!fetchSuccess(res)) {
+    f(payloadWhenErr);
+    return;
+  }
+  const { header, body } = res.data;
+  const { status } = header;
+  apiSuccess(status) ? f(body) : handleErr2(status, f, errF);
 };

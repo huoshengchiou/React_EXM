@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import CSStest from "./CSStest";
 // import AnimateCard from "./AnimateCard";
 // import Banner from "./Banner";
@@ -39,6 +39,40 @@ import { useScrollFetch } from "./IfinityScroll/useScrollFetch";
 // import Invite from "./Invite";
 import DragTwo from "./DragTwo";
 // import AsyncPlay from "./AsyncPlay";
+import TestRxjs from "./TestRxjs";
+import Battle from "./Battle";
+
+const ImgLoader = (src) => {
+  const [loaded, setLoaded] = useState(false);
+  // const refImg = useRef(
+  //   <img src={src} alt="" onLoad={() => setLoaded(true)} />
+  // );
+  const refImg = useRef(null);
+  useEffect(() => {
+    console.log(refImg.current);
+  }, []);
+  return (
+    <>
+      <img ref={refImg} src={src} alt="" onLoad={() => setLoaded(true)} />
+    </>
+  );
+};
+
+const ExternalImage = (props) => {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <>
+      <img
+        style={{ opacity: loaded ? 1 : 0 }}
+        onLoad={() => setLoaded(true)}
+        src={props.src}
+        alt={props.alt}
+        {...props}
+      />
+      {/* {!loaded && "正在跑"} */}
+    </>
+  );
+};
 
 function App() {
   //inject new props
@@ -157,6 +191,46 @@ function App() {
   //     },
   //   ]);
   // };
+
+  const range = (start, stop) =>
+    new Array(stop - start + 1).fill(0).map((val, idx) => start + idx);
+  const [val, setVal] = useState("");
+
+  const keyMap = {
+    backspace: 8,
+    neg: 189,
+    pos: 187,
+    dot: 190,
+    num: range(48, 57),
+    e: 69,
+  };
+
+  const keyarr = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 8];
+
+  const modeMap = {
+    pInt: [...keyMap.num, keyMap.backspace],
+  };
+
+  const modeMapFac = (type) => {
+    switch (type) {
+      case "pInt":
+        return [...keyMap.num, keyMap.backspace];
+      case "number":
+        return [];
+      default:
+        return [];
+    }
+  };
+
+  const handleNumber = (e, modeMap) => {
+    console.log(e.keyCode);
+    if (!modeMap.find((x) => x === e.keyCode)) {
+      e.preventDefault();
+    }
+  };
+
+  const type = "number";
+
   return (
     <>
       {/* <Rxjs_main /> */}
@@ -220,6 +294,22 @@ function App() {
       {/* <AsyncPlay /> */}
       {/* <DragTwo /> */}
       <CSStest />
+      <TestRxjs />
+      <input
+        type={type}
+        value={val}
+        onKeyDown={(e) => console.log(e.keyCode)}
+        onChange={(e) => {
+          setVal(e.target.value);
+        }}
+      />
+      <Battle />
+      <img
+        src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png"
+        alt=""
+      />
+      <ImgLoader src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" />
+      <ExternalImage src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" />
     </>
   );
 }

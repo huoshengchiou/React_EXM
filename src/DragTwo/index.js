@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { senseError } from "../mapError";
+import { senseError, senseError2 } from "../mapError";
 import classes from "./style.module.scss";
 
 const data = [
@@ -20,12 +20,17 @@ const res = {
 
 const fakeAPI = (senseError, setRenderErr) => {
   setTimeout(() => {
-    senseError(
+    // senseError(res, setRenderErr, () => {
+    //   console.log("ok");
+    // });
+    senseError2(
       res,
-      (res) => {
-        console.log(res);
+      (payload) => {
+        console.log(payload);
       },
-      setRenderErr
+      (err) => {
+        setRenderErr(err);
+      }
     );
   }, 5000);
 };
