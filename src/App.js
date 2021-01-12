@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import CSStest from "./CSStest";
+import BattleCard from "./BattleCard";
 // import AnimateCard from "./AnimateCard";
 // import Banner from "./Banner";
 // import Rxjs_main from "./Rxjs_main";
@@ -310,6 +311,8 @@ function App() {
       />
       <ImgLoader src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" />
       <ExternalImage src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" />
+      {/* <CSStest /> */}
+      <BattleCard />
     </>
   );
 }
